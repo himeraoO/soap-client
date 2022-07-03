@@ -20,9 +20,9 @@ public class SoapClientApplication {
         return args -> {
 
             System.out.println("--- Add User ---");
-            String login = "wer3";
-            String name = "Spring3";
-            String password = "S5pring3";
+            String login = "wer";
+            String name = "Spring";
+            String password = "S2p3ring";
             AddUserDetailsResponse addUserDetailsResponse = usersClient.addUser(login, name, password, 1L, 2L );
             UserDetails userDetails = addUserDetailsResponse.getUserDetails();
             if (userDetails != null) {
@@ -44,21 +44,39 @@ public class SoapClientApplication {
             System.out.println("Roles");
             userDetailsWithRoles.getRoles().forEach(e -> System.out.println(e.getId() + ", " + e.getName()));
 
-//            System.out.println("--- Update User ---");
-//            UserDetails userDetailsUpd  = new UserDetails();
-//            userDetailsUpd.setLogin("wer");
-//            userDetailsUpd.setUsername("NewSpring");
-//            UpdateUserDetailsResponse updateArticleResponse = usersClient.updateUser(userDetailsUpd, 2L);
-//            ServiceStatus serviceStatus2 = updateArticleResponse.getServiceStatus();
-//            System.out.println("StatusCode: " + serviceStatus2.getStatusCode() +
-//                    ", Message: " + serviceStatus2.getMessage());
+            System.out.println("--- Update User ---");
+            UserAllDetails userAllDetailsUpd  = new UserAllDetails();
+            userAllDetailsUpd.setLogin("wer");
+            userAllDetailsUpd.setUsername("NewSpring");
+            userAllDetailsUpd.setPassword("1Q2W23asdasd");
+            UpdateUserDetailsResponse updateArticleResponse = usersClient.updateUser(userAllDetailsUpd, 2L);
+            ServiceStatus serviceStatus2 = updateArticleResponse.getServiceStatus();
+            System.out.println("StatusCode: " + serviceStatus2.getStatusCode() +
+                    ", Message: " + serviceStatus2.getMessage());
 
-//            System.out.println("--- Delete User ---");
-//            String login2 = "wer";
-//            DeleteUserDetailsResponse deleteUserDetailsResponse = usersClient.deleteUser(login2);
-//            ServiceStatus serviceStatus3 = deleteUserDetailsResponse.getServiceStatus();
-//            System.out.println("StatusCode: " + serviceStatus3.getStatusCode() +
-//                    ", Message: " + serviceStatus3.getMessage());
+            //////////////////////////////////////////////////////////
+            System.out.println("--- Get all Users ---");
+            getUsersResponse = usersClient.getAllUsers();
+            getUsersResponse.getUserDetails().stream()
+                    .forEach(e -> System.out.println(e.getLogin() + ", "+ e.getUsername()));
+
+            /////////////////////////////////////////////////////////
+
+            System.out.println("--- Delete User ---");
+            String login2 = "wer";
+            DeleteUserDetailsResponse deleteUserDetailsResponse = usersClient.deleteUser(login2);
+            ServiceStatus serviceStatus3 = deleteUserDetailsResponse.getServiceStatus();
+            System.out.println("StatusCode: " + serviceStatus3.getStatusCode() +
+                    ", Message: " + serviceStatus3.getMessage());
+
+            //////////////////////////////////////////////////////////
+            System.out.println("--- Get all Users ---");
+            getUsersResponse = usersClient.getAllUsers();
+            getUsersResponse.getUserDetails().stream()
+                    .forEach(e -> System.out.println(e.getLogin() + ", "+ e.getUsername()));
+
+            /////////////////////////////////////////////////////////
+
         };
     }
 
