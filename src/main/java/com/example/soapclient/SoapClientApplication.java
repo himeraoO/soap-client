@@ -20,9 +20,9 @@ public class SoapClientApplication {
         return args -> {
 
             System.out.println("--- Add User ---");
-            String login = "wer2";
-            String name = "Spring";
-            String password = "S5pring";
+            String login = "wer3";
+            String name = "Spring3";
+            String password = "S5pring3";
             AddUserDetailsResponse addUserDetailsResponse = usersClient.addUser(login, name, password, 1L, 2L );
             UserDetails userDetails = addUserDetailsResponse.getUserDetails();
             if (userDetails != null) {
