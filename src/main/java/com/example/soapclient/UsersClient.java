@@ -43,9 +43,9 @@ public class UsersClient extends WebServiceGatewaySupport {
                 request, new SoapActionCallback("http://localhost:8080/service/addUserDetailsRequest"));
         return response;
     }
-    public UpdateUserDetailsResponse updateUser(UserAllDetails userALlDetails, Long... longs) {
+    public UpdateUserDetailsResponse updateUser(UserDetails userALlDetails, Long... longs) {
         UpdateUserDetailsRequest request = new UpdateUserDetailsRequest();
-        request.setUserAllDetails(userALlDetails);
+        request.setUserDetails(userALlDetails);
         if (longs.length != 0){
             for (Long l:longs) {
                 request.getRolesIds().add(l);

@@ -40,13 +40,13 @@ public class SoapClientApplication {
             /////////////////////////////////////////////////////////
             System.out.println("--- Get Users by Login ---");
             GetUserDetailsByLoginResponse userDetailsByLoginResponse = usersClient.getUser("1");
-            UserDetailsWithRoles userDetailsWithRoles = userDetailsByLoginResponse.getUserDetailsWithRoles();
+            UserDetails userDetailsWithRoles = userDetailsByLoginResponse.getUserDetails();
             System.out.println(userDetailsWithRoles.getLogin() + ", "+ userDetailsWithRoles.getUsername());
             System.out.println("Roles");
             userDetailsWithRoles.getRoles().forEach(e -> System.out.println(e.getId() + ", " + e.getName()));
             /////////////////////////////////////////////////////////
             System.out.println("--- Update User ---");
-            UserAllDetails userAllDetailsUpd  = new UserAllDetails();
+            UserDetails userAllDetailsUpd  = new UserDetails();
             userAllDetailsUpd.setLogin("wer");
             userAllDetailsUpd.setUsername("NewSpring");
             userAllDetailsUpd.setPassword("1Q2W23asdasd");
